@@ -1,1 +1,137 @@
+:root {
+  --header-height: 10vh;
+  --footer-height: 15vh;
+
+  --homePage-height: calc(100vh - (var(--header-height) + var(--footer-height)));
+  --margin-page: var(--header-height);
+
+  --light-white: #e7dfd5;
+  --blue-color: #3b6978
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--light-white);
+  color: var(--light-white);
+}
+
+.titleArticle {
+  color: var(--blue-color);
+}
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  background-color: var(--blue-color);
+}
+
+
+/* HOME PAGE */
+.homePage {
+  position: relative;
+  margin-top: var(--margin-page);
+  width: 100%;
+  height: var(--homePage-height);
+}
+
+.homePage article {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 40vh;
+  width: 50%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 80% 10%;
+  background-color: var(--light-white);
+}
+
+.loginForm {
+  padding: 30px;
+  background-color: var(--blue-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.loginForm .inputDiv {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loginForm input {
+  border: none;
+  padding: 5px;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.linkToCreate {
+  height: 100%;
+  width: 100%;
+  background-color: var(--blue-color);
+  color: var(--light-white);
+  text-decoration: underline;
+  text-align: center;
+}
+
+/* REGISTER PAGE */
+.registerPage {
+  position: relative;
+  margin-top: var(--margin-page);
+  width: 100%;
+  height: var(--homePage-height);
+}
+
+.registerPage article {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 90%;
+  background-color: var(--light-white);
+}
+
+.selects {
+  display: flex;
+  justify-content: space-around;
+}
+
+.selects .inputSelect {
+  display: flex;
+  flex-direction: column;
+}
+
+/* DIVES */
+.dives {
+  height: 90vh;
+  width: 50%;
+  background-color: rebeccapurple;
+}
+
+
+
+
+
+
+
+
 

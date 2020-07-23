@@ -1,0 +1,11 @@
+.buttonCpnt {
+  padding: 10px 15px;
+  width: 100px;
+  border: none;
+  border-radius: 7px;
+}
+
+.buttonCpnt:hover {
+  background-color: rgba(231, 223, 213, 0.8);
+  cursor: pointer;
+}

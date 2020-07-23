@@ -37,6 +37,7 @@ body {
 /* HEADER */
 .header {
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
   height: 10vh;
@@ -169,6 +170,10 @@ body {
   text-align: center;
 }
 
+.lastDivesBoard table tr {
+  height: 3vh;
+}
+
 .selects {
   margin-bottom: 5vh;
 }
@@ -200,6 +205,15 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .titleArticle {
+    justify-self: center;
+  }
+
+  .registerPage article {
+    position: relative;
+    margin-top: 25vh;
+  }
+
   .divingBoard section {
     width: 100%;
   }

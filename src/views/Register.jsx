@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 import ButtonCpnt from "../components/BoutonCpnt";
 
@@ -63,6 +64,7 @@ const Register = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (
       !firstname ||
       !Lastname ||
@@ -79,22 +81,27 @@ const Register = (props) => {
       return setError("Les mots de passes sont différents");
     }
 
-    await Axios.post(
-      "http://localhost:8080/api/divers",
-      {
-        lastname: Lastname,
-        firstname: firstname,
-        age: age,
-        weight: poid,
-        height: taille,
-        email: emailUser,
-        password: passwordUser,
-      },
-      { headers: { "Content-Type": "application/json" } }
-    );
-    setTimeout(() => {
-      props.history.push("/");
-    }, 1500);
+    try {
+      await Axios.post(
+        "http://localhost:8080/api/divers",
+        {
+          lastname: Lastname,
+          firstname: firstname,
+          age: age,
+          weight: poid,
+          height: taille,
+          email: emailUser,
+          password: passwordUser,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      toast.success("Vous êtes enregistré!", {});
+      setTimeout(() => {
+        props.history.push("/");
+      }, 1500);
+    } catch (err) {
+      toast.error(err.message, {});
+    }
   };
 
   return (
@@ -153,7 +160,12 @@ const Register = (props) => {
             </div>
             <div className="inputSelect">
               <label htmlFor="taille">Taille</label>
-              <select onChange={handleTaille} name="taille" id="taille" required>
+              <select
+                onChange={handleTaille}
+                name="taille"
+                id="taille"
+                required
+              >
                 <option value=""></option>
                 {tailles.map((elt) => {
                   return (
@@ -198,6 +210,17 @@ const Register = (props) => {
           <ButtonCpnt type="submit">Envoyer</ButtonCpnt>
         </form>
       </article>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1300}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

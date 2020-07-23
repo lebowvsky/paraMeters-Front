@@ -1,0 +1,10 @@
+.wrapper {
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.inputArea {
+  padding: 5px 10px;
+  
+}

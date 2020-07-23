@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import { connect } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 import {
   changeFirstname,
@@ -14,8 +14,19 @@ import {
 import ButtonCpnt from "../components/BoutonCpnt";
 
 const Home = (props) => {
+
+  const {changeFirstname,changeLastname,changeEmail,changeUserId} = props;
+
   const [userLogin, setUserLogin] = useState();
   const [password, setPassword] = useState();
+  
+
+  useEffect(() => {
+    changeFirstname();
+    changeLastname();
+    changeEmail();
+    changeUserId();
+  },[]);
 
   const handleLogin = (e) => {
     setUserLogin(e.target.value);
@@ -42,15 +53,17 @@ const Home = (props) => {
       const userDatas = await Axios.get(
         `http://localhost:8080/api/divers/redux/${userLogin}`
       );
-      props.changeFirstname(userDatas.data[0].firstname);
-      props.changeLastname(userDatas.data[0].lastname);
-      props.changeEmail(userDatas.data[0].email);
-      props.changeUserId(userDatas.data[0].id_diver);
-      setTimeout(()=> {
+      changeFirstname(userDatas.data[0].firstname);
+      changeLastname(userDatas.data[0].lastname);
+      changeEmail(userDatas.data[0].email);
+      changeUserId(userDatas.data[0].id_diver);
+      setTimeout(() => {
         props.history.push("/dive-board");
       }, 1500);
-      toast.success(`${userDatas.data[0].firstname} a été loggé avec succès !`, {});
-      
+      toast.success(
+        `${userDatas.data[0].firstname} a été loggé avec succès !`,
+        {}
+      );
     } catch (err) {
       toast.error("Erreur de Login ou de Mot de passe", {});
     }
@@ -80,7 +93,7 @@ const Home = (props) => {
               required
             />
           </div>
-          <ButtonCpnt>Envoyer</ButtonCpnt>
+          <ButtonCpnt type="submit">Envoyer</ButtonCpnt>
         </form>
         <Link to="/register">
           <p className="linkToCreate">Créer un compte</p>

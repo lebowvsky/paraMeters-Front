@@ -5,8 +5,13 @@
   --homePage-height: calc(100vh - (var(--header-height) + var(--footer-height)));
   --margin-page: var(--header-height);
 
+  --padding-board: 10px;
+
   --light-white: #e7dfd5;
-  --blue-color: #3b6978
+  --blue-color: #3b6978;
+
+  --h2-font-size-mobile: 1rem;
+  --p-font-size-mobile: 0.8rem;
 }
 
 
@@ -21,6 +26,10 @@ body {
   color: var(--light-white);
 }
 
+.nameTitle {
+  font-size: 1.3rem;
+}
+
 .titleArticle {
   color: var(--blue-color);
 }
@@ -33,7 +42,17 @@ body {
   height: 10vh;
   width: 100%;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-color: var(--blue-color);
+}
+
+.pwrOff {
+  color: var(--light-white);
+}
+
+.pwrOff:hover {
+  color: rgba(231, 223, 213, 0.7);
 }
 
 
@@ -51,7 +70,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   min-height: 40vh;
-  width: 50%;
+  width: 60%;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 10% 80% 10%;
@@ -102,6 +121,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
+  margin-top: var(--margin-page);
   transform: translate(-50%, -50%);
   width: 80%;
   display: grid;
@@ -120,18 +140,103 @@ body {
   flex-direction: column;
 }
 
-/* DIVES */
-.dives {
-  height: 90vh;
-  width: 50%;
-  background-color: rebeccapurple;
+/* DIVING BOARD */
+.divingBoard {
+  width: 100%;
+  margin-top: var(--margin-page);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+.divingBoard section {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 100%;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
 
+.divingBoard section .lastDivesBoard {
+  width: 100%;
+  background-color: var(--blue-color);
+  padding: var(--padding-board);
+}
 
+.lastDivesBoard table {
+  width: 100%;
+  text-align: center;
+}
 
+.selects {
+  margin-bottom: 5vh;
+}
 
+.palanquee {
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+}
 
+.choseDiver {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+}
 
+.palanquee button {
+  padding: 8px 10px;
+  border-radius: 50%;
+}
 
+.palanquee .diversList {
+  color: var(--blue-color);
+  background-color: var(--light-white);
+  padding: 30px;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
 
+@media screen and (max-width: 600px) {
+  .divingBoard section {
+    width: 100%;
+  }
+
+  .lastDivesBoard table tr {
+    height: 3vh;
+  }
+
+  .lastDivesBoard table th {
+    font-size: 0.9rem;
+  }
+
+  .lastDivesBoard table td {
+    font-size: var(--p-font-size-mobile);
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 500px) {
+  .homePage article {
+    min-height: 40vh;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 80% 10%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .homePage article {
+    min-height: 40vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 80% 10%;
+  }
+
+  .registerPage article {
+    width: 100%;
+  }
+}

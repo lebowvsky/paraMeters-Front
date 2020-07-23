@@ -1,6 +1,6 @@
 .buttonCpnt {
   padding: 10px 15px;
-  width: 100px;
+  max-width: 100px;
   border: none;
   border-radius: 7px;
 }

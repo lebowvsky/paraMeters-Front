@@ -93,11 +93,9 @@ const Register = (props) => {
       { headers: { "Content-Type": "application/json" } }
     );
     setTimeout(() => {
-      props.history.push('/');
-    }, 1500)
+      props.history.push("/");
+    }, 1500);
   };
-
-  
 
   return (
     <div className="registerPage">
@@ -129,25 +127,40 @@ const Register = (props) => {
           <div className="selects">
             <div className="inputSelect">
               <label htmlFor="age">Age</label>
-              <select onChange={handleAge} name="age" id="age">
+              <select onChange={handleAge} name="age" id="age" required>
+                <option value=""></option>
                 {ages.map((elt) => {
-                  return <option key={elt} value={elt}>{elt}</option>;
+                  return (
+                    <option key={elt} value={elt}>
+                      {elt}
+                    </option>
+                  );
                 })}
               </select>
             </div>
             <div className="inputSelect">
               <label htmlFor="poid">Poid</label>
-              <select onChange={handlePoid} name="poid" id="poid">
+              <select onChange={handlePoid} name="poid" id="poid" required>
+                <option value=""></option>
                 {poids.map((elt) => {
-                  return <option key={elt} value={elt}>{elt}</option>;
+                  return (
+                    <option key={elt} value={elt}>
+                      {elt}
+                    </option>
+                  );
                 })}
               </select>
             </div>
             <div className="inputSelect">
               <label htmlFor="taille">Taille</label>
-              <select onChange={handleTaille} name="taille" id="taille">
+              <select onChange={handleTaille} name="taille" id="taille" required>
+                <option value=""></option>
                 {tailles.map((elt) => {
-                  return <option key={elt} value={elt}>{elt}</option>;
+                  return (
+                    <option key={elt} value={elt}>
+                      {elt}
+                    </option>
+                  );
                 })}
               </select>
             </div>
@@ -182,7 +195,7 @@ const Register = (props) => {
               required
             />
           </div>
-          <ButtonCpnt>Envoyer</ButtonCpnt>
+          <ButtonCpnt type="submit">Envoyer</ButtonCpnt>
         </form>
       </article>
     </div>

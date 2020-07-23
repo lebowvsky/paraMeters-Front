@@ -1,9 +1,4 @@
-const initState = {
-  firstname: "Georges",
-  lastname: "La classe",
-  email: "georges@free.fr",
-  userId: 0,
-};
+const initState = {};
 
 const userReducer = (state = initState, action) => {
   switch (action.type) {

@@ -13,7 +13,12 @@ const LastDivesCpnt = (props) => {
       setAllDives(divesDatas.data);
     };
     getDives();
+    console.log(props.userDives)
   }, [props.user.userId]);
+
+  useEffect(() => {
+    return setAllDives([...allDives, props.userDives])
+  }, [props.userDives])
 
   return (
     <section className="lastDives">
@@ -33,7 +38,7 @@ const LastDivesCpnt = (props) => {
           <tbody>
             {allDives.map((elt) => {
               return (
-                <tr>
+                <tr key={`${elt.date}${elt.hour_diving}`}>
                   <td>{elt.date}</td>
                   <td>{elt.localisation}</td>
                   <td>{elt.hour_diving}</td>
@@ -53,6 +58,7 @@ const LastDivesCpnt = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    userDives: state.userDives,
   };
 };
 

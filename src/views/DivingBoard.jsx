@@ -6,12 +6,12 @@ import AddDivesCpnt from "../components/AddDiveCpnt";
 const DivingBoard = () => {
   const [addIsVisible, setAddIsVisible] = useState(false);
   const handleAddDive = () => {
-    setAddIsVisible(true);
+    setAddIsVisible(!addIsVisible);
   }
   return (
     <article className="divingBoard">
       <LastDivesCpnt />
-      <ButtonCpnt funcToClick={handleAddDive}>Add a Dive</ButtonCpnt>
+      {addIsVisible ? <ButtonCpnt funcToClick={handleAddDive}>Fermer</ButtonCpnt> : <ButtonCpnt funcToClick={handleAddDive}>Ajouter une plongée</ButtonCpnt>}
       {addIsVisible && <AddDivesCpnt />}
     </article>
   );

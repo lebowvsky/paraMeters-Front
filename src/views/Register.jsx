@@ -83,7 +83,7 @@ const Register = (props) => {
 
     try {
       await Axios.post(
-        "http://localhost:8080/api/divers",
+        "http://localhost:8080/api/divers/register",
         {
           lastname: Lastname,
           firstname: firstname,

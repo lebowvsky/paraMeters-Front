@@ -41,7 +41,7 @@ const AddDivesCpnt = (props) => {
   useEffect(() => {
     Axios.get("http://localhost:8080/api/divers").then((response) =>
       setAllDivers(
-        response.data.filter((diver) => diver.id_diver != props.user.userId)
+        response.data.filter((diver) => diver.id_diver !== props.user.userId)
       )
     );
   }, []);
@@ -192,7 +192,7 @@ const AddDivesCpnt = (props) => {
 
           <div className="diversList">
             {chosenDiversDatas.map((diver) => {
-              return <p>{`${diver.firstname} ${diver.lastname}`}</p>;
+              return <p key={`${diver.id_diver}`}>{`${diver.firstname} ${diver.lastname}`}</p>;
             })}
           </div>
         </div>

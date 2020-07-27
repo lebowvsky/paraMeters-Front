@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
 const Header = (props) => {
-  console.log(props);
   return (
     <header className="header">
       <h1>paraMeters</h1>

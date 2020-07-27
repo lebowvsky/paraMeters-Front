@@ -2,43 +2,18 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Axios from "axios";
 
-const dives = [
-  {
-    nmbr: 1,
-    prof: "25m",
-    localisation: "Tahiti",
-    duree: 61,
-  },
-  {
-    nmbr: 2,
-    prof: "24m",
-    localisation: "Cherbourg",
-    duree: 34,
-  },
-  {
-    nmbr: 3,
-    prof: "35m",
-    localisation: "Tahiti",
-    duree: 28,
-  },
-  {
-    nmbr: 4,
-    prof: "18m",
-    localisation: "La Réunion",
-    duree: 75,
-  },
-];
-
 const LastDivesCpnt = (props) => {
   const [allDives, setAllDives] = useState([]);
 
   useEffect(() => {
     const getDives = async () => {
-      const divesDatas = await Axios.get(`http://localhost:8080/api/divers/${props.user.userId}/dives`);
+      const divesDatas = await Axios.get(
+        `http://localhost:8080/api/divers/${props.user.userId}/dives`
+      );
       setAllDives(divesDatas.data);
     };
     getDives();
-  }, []);
+  }, [props.user.userId]);
 
   return (
     <section className="lastDives">
@@ -56,20 +31,18 @@ const LastDivesCpnt = (props) => {
             </tr>
           </thead>
           <tbody>
-            {
-              allDives.map(elt => {
-                return (
-                  <tr>
-                    <td>{elt.date}</td>
-                    <td>{elt.localisation}</td>
-                    <td>{elt.hour_diving}</td>
-                    <td>{elt.duration}</td>
-                    <td>{elt.deep}</td>
-                    <td>{elt.gas}</td>
-                  </tr>
-                )
-              })
-            }
+            {allDives.map((elt) => {
+              return (
+                <tr>
+                  <td>{elt.date}</td>
+                  <td>{elt.localisation}</td>
+                  <td>{elt.hour_diving}</td>
+                  <td>{elt.duration}</td>
+                  <td>{elt.deep}</td>
+                  <td>{elt.gas}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

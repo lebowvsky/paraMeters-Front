@@ -4,6 +4,7 @@ import Axios from "axios";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 
+
 import {
   changeFirstname,
   changeLastname,
@@ -14,19 +15,17 @@ import {
 import ButtonCpnt from "../components/BoutonCpnt";
 
 const Home = (props) => {
-
-  const {changeFirstname,changeLastname,changeEmail,changeUserId} = props;
+  const { changeFirstname, changeLastname, changeEmail, changeUserId } = props;
 
   const [userLogin, setUserLogin] = useState();
   const [password, setPassword] = useState();
-  
 
   useEffect(() => {
     changeFirstname();
     changeLastname();
     changeEmail();
     changeUserId();
-  },[]);
+  }, [changeFirstname, changeLastname,changeEmail, changeUserId]);
 
   const handleLogin = (e) => {
     setUserLogin(e.target.value);
@@ -44,12 +43,6 @@ const Home = (props) => {
         { email: userLogin, password: password },
         { headers: { "Content-Type": "application/json" } }
       )
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
       const userDatas = await Axios.get(
         `http://localhost:8080/api/divers/redux/${userLogin}`
       );
@@ -64,13 +57,14 @@ const Home = (props) => {
         `${userDatas.data[0].firstname} a été loggé avec succès !`,
         {}
       );
-    } catch (err) {
+    } catch (error) {
       toast.error("Erreur de Login ou de Mot de passe", {});
     }
   };
+
   return (
     <div className="homePage">
-      <article>
+      <article className="homeboard">
         <h2 className="titleArticle">Sign-In</h2>
         <form onSubmit={handleSubmit} className="loginForm">
           <div className="inputDiv">

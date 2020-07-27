@@ -3,6 +3,8 @@ import Axios from "axios";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 
+import { addUserDive } from "../actions/userDivesActions";
+
 import InputCpnt from "./InputCpnt";
 import SelectCpnt from "./SelectCpnt";
 import SelectDiversCpnt from "./SelectDiversCpnt";
@@ -44,6 +46,7 @@ const AddDivesCpnt = (props) => {
         response.data.filter((diver) => diver.id_diver !== props.user.userId)
       )
     );
+    console.log(props);
   }, []);
 
   useEffect(() => {
@@ -105,6 +108,7 @@ const AddDivesCpnt = (props) => {
         },
         { headers: { "Content-Type": "application/json" } }
       );
+      props.addUserDive(dateDive, profondeur, duree, melange, localisation, hourDive);
       const recupDiving = await Axios.get(
         `http://localhost:8080/api/diving/recup/${localisation}/${dateDive}/${duree}/${profondeur}`
       );
@@ -192,7 +196,11 @@ const AddDivesCpnt = (props) => {
 
           <div className="diversList">
             {chosenDiversDatas.map((diver) => {
-              return <p key={`${diver.id_diver}`}>{`${diver.firstname} ${diver.lastname}`}</p>;
+              return (
+                <p
+                  key={`${diver.id_diver}`}
+                >{`${diver.firstname} ${diver.lastname}`}</p>
+              );
             })}
           </div>
         </div>
@@ -216,7 +224,32 @@ const AddDivesCpnt = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    userDives: state.userDives,
   };
 };
 
-export default connect(mapStateToProps)(AddDivesCpnt);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addUserDive: (
+      date,
+      deep,
+      duration,
+      gas,
+      localisation,
+      hour_diving
+    ) => {
+      dispatch(
+        addUserDive(
+          date,
+          deep,
+          duration,
+          gas,
+          localisation,
+          hour_diving
+        )
+      );
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddDivesCpnt);

@@ -4,7 +4,7 @@ import Axios from "axios";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 
-
+import { addUserDive } from "../actions/userDivesActions";
 import {
   changeFirstname,
   changeLastname,
@@ -15,7 +15,7 @@ import {
 import ButtonCpnt from "../components/BoutonCpnt";
 
 const Home = (props) => {
-  const { changeFirstname, changeLastname, changeEmail, changeUserId } = props;
+  const { changeFirstname, changeLastname, changeEmail, changeUserId, addUserDive } = props;
 
   const [userLogin, setUserLogin] = useState();
   const [password, setPassword] = useState();
@@ -25,7 +25,8 @@ const Home = (props) => {
     changeLastname();
     changeEmail();
     changeUserId();
-  }, [changeFirstname, changeLastname,changeEmail, changeUserId]);
+    addUserDive();
+  }, [changeFirstname, changeLastname, changeEmail, changeUserId, addUserDive]);
 
   const handleLogin = (e) => {
     setUserLogin(e.target.value);
@@ -42,7 +43,7 @@ const Home = (props) => {
         "http://localhost:8080/api/divers/login",
         { email: userLogin, password: password },
         { headers: { "Content-Type": "application/json" } }
-      )
+      );
       const userDatas = await Axios.get(
         `http://localhost:8080/api/divers/redux/${userLogin}`
       );
@@ -127,6 +128,25 @@ const mapDispatchToProps = (dispatch) => {
     },
     changeUserId: (userId) => {
       dispatch(changeUserId(userId));
+    },
+    addUserDive: (
+      date,
+      deep,
+      duration,
+      gas,
+      localisation,
+      hour_diving
+    ) => {
+      dispatch(
+        addUserDive(
+          date,
+          deep,
+          duration,
+          gas,
+          localisation,
+          hour_diving
+        )
+      );
     },
   };
 };

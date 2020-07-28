@@ -13,7 +13,6 @@ const LastDivesCpnt = (props) => {
       setAllDives(divesDatas.data);
     };
     getDives();
-    console.log(props.userDives)
   }, [props.user.userId]);
 
   useEffect(() => {
